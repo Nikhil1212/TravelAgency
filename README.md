@@ -1,7 +1,7 @@
 
 To get started with the travel agency system, a driver is defined in the TravelAgencyMain class. Here are the below options exposed via driver to create/map the different entities in the system. 
 
-_
+
 Press
 1 : createPassenger
 
@@ -26,7 +26,7 @@ Press
 11: removeDestinationFromItineary
 
 12: addDestinationToItineary
-_
+
 
 Now to start the system, here are the sequence of steps that needs to be followed:
 
