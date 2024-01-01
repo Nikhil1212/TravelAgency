@@ -1,3 +1,13 @@
+**High level call flow**
+
+![high_level](https://github.com/Nikhil1212/TravelAgency/assets/24733479/618c0402-a635-468a-8bc7-1edf0848268c)
+
+
+
+**Class Diagram**
+
+![class_diagram](https://github.com/Nikhil1212/TravelAgency/assets/24733479/ee0b9a75-a43e-40b9-9efc-0eb29f61ff85)
+
 
 To get started with the travel agency system, a driver is defined in the TravelAgencyMain class. Here are the below options exposed via driver to create/map the different entities in the system. 
 
