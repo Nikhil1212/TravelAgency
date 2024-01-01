@@ -1,10 +1,10 @@
-package repository;
+package com.assignment.travel.repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import entities.Activity;
-import entities.Destination;
+import com.assignment.travel.entities.Activity;
+import com.assignment.travel.entities.Destination;
 
 public class ActivityRepository {
 	

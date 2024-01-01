@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import entities.Activity;
-import repository.ActivityRepository;
-import service.ActivityService;
+import com.assignment.travel.entities.Activity;
+import com.assignment.travel.repository.ActivityRepository;
+import com.assignment.travel.service.ActivityService;
 
 public class ActivityServiceTest {
 

@@ -1,7 +1,8 @@
-/Constants.class
-/TravelAgencyMain.class
-/entities/
-/passengerType/
-/repository/
+/com/
 /service/
 /testCases/
+/entities/
+/repository/
+/constants/
+/TravelAgencyMain.class
+/test/

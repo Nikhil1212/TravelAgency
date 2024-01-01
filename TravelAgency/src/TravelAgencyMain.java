@@ -1,66 +1,81 @@
+
 import java.io.IOException;
 import java.util.Scanner;
 
-import entities.Activity;
-import entities.Destination;
-import entities.Itinerary;
-import entities.Passenger;
-import entities.TravelPackage;
-import passengerType.GoldPassenger;
-import passengerType.PremiumPassenger;
-import passengerType.StandardPassenger;
-import service.ActivityService;
-import service.DestinationService;
-import service.ItineraryService;
-import service.PassengerService;
-import service.TravelPackageService;
+import com.assignment.travel.constants.Constants;
+import com.assignment.travel.entities.Activity;
+import com.assignment.travel.entities.Destination;
+import com.assignment.travel.entities.Itinerary;
+import com.assignment.travel.entities.TravelPackage;
+import com.assignment.travel.entities.passenger.GoldPassenger;
+import com.assignment.travel.entities.passenger.Passenger;
+import com.assignment.travel.entities.passenger.PremiumPassenger;
+import com.assignment.travel.entities.passenger.StandardPassenger;
+import com.assignment.travel.service.ActivityService;
+import com.assignment.travel.service.DestinationService;
+import com.assignment.travel.service.ItineraryService;
+import com.assignment.travel.service.PassengerService;
+import com.assignment.travel.service.TravelPackageService;
 
 public class TravelAgencyMain {
+	
+	private static Scanner scanner = new Scanner(System.in);
+	private static  ActivityService activityService = ActivityService.getInstanceOf();
+	private static PassengerService passengerService = PassengerService.getInstanceOf();
+	private static DestinationService destinationService = DestinationService.getInstanceOf();
+	private static ItineraryService itineraryService = ItineraryService.getInstanceOf();
+	private static TravelPackageService travelPackageService = TravelPackageService.getInstanceOf();
+	
 
 	public static void main(String[] args) {
 
-		Scanner scanner = new Scanner(System.in);
-		ActivityService activityService = ActivityService.getInstanceOf();
-		PassengerService passengerService = PassengerService.getInstanceOf();
-		DestinationService destinationService = DestinationService.getInstanceOf();
-		ItineraryService itineraryService = ItineraryService.getInstanceOf();
-		TravelPackageService travelPackageService = TravelPackageService.getInstanceOf();
 		System.out.println(
 				"Welcome to Bangalore Travel Agency. Connecting People. Spreading Happiness. Creating Memories!!");
-		System.out.println("Please Select the following options: " + Constants.userRegistration
-				+ Constants.additionOfNewActivity + Constants.newItinerary + Constants.newDestination
-				+ Constants.updatePassengerDetails + Constants.updateDestinationDetails
-				+ Constants.updateItineraryDetails + Constants.upadteTravelPackageDetails
-				+ Constants.removeActivityFromDestination + Constants.newTravelPackage + Constants.enrollForActivity);
+		System.out.println("Please Select the following options:\n"
+				+ "1 : createPassenger\n"
+				+ "2 : createActivity\n"
+				+ "3 : createItineary\n"
+				+ "4: createDestination\n"
+				+ "5: createTravelPackage\n"
+				+ "6: registerPassengerForActivity\n"
+				+ "7: addActivityToDestination\n"
+				+ "8: removeActivityFromDestination\n"
+				+ "9: printTravelPackageDetails\n"
+				+ "10: printPassengerDetails\n"
+				+ "11: removeDestinationFromItineary\n"
+				+ "12: addDestinationToItineary\n"
+				+ "");
 
 		while (true) {
 			try {
-				System.out.println("\n Provide the input in the range 0 - 23.");
+				System.out.println("\nProvide the input in the range 0 - 23.");
 				int inputNo = scanner.nextInt();
-				switch (inputNo) {
+				switch (inputNo) {	
 				case 0:
 					break;
-				case 1:
-					getInputForPassenger();
-
+				case 1:{
+					registerPassenger();
+					break;
+					}
+					
 				case 2:
-					getInputForActivityEntry();
+					registerActivity();
 					break;
 
 				case 3:
-					generateNewItinerary();
+					createItineary();
 					break;
 
 				case 4:
-					getInputForNewDestination();
+					createDestination();
 					break;
 
 				case 5:
-					getNewTravelPackage();
+					createTravelPackage();
 					break;
 
 				case 6:
-					passengerEnrollForActivity();
+					registerPassengerForActivity();
 					break;
 
 				case 7:
@@ -72,70 +87,70 @@ public class TravelAgencyMain {
 					break;
 
 				case 9:
-					displayAllDetailsOfTravelPackage();
+					printTravelPackageDetails();
 					break;
+
+//				case 10:
+//					printItinearyOfTravelPackage();
+//					break;
 
 				case 10:
-					displayItineraryOfTravelPackage();
+					printPassengerDetails();
 					break;
 
-				case 11:
-					displayIndividualPassengerDetails();
-					break;
+//				case 12: {
+//					// update the maxSeats for activity.
+//					System.out.println(Constants.enterActivityId);
+//					int activityId = scanner.nextInt();
+//					System.out.println("Enter the max seats for the activity.");
+//					int maxseats = scanner.nextInt();
+//					activityService.updateMaxSeatsAvailable(activityId, maxseats);
+//					break;
+//				}
+//
+//				case 13: {
+//					// update maxSeats for travelPackage
+//
+//					System.out.println("Enter the TravelPackage id ");
+//					int travelPackageId = scanner.nextInt();
+//					System.out.println("Enter the max seats for the TravelPackage.");
+//					int maxseats = scanner.nextInt();
+//					activityService.updateMaxSeatsAvailable(travelPackageId, maxseats);
+//					break;
+//				}
+//				case 14: {
+//					// update destinationId for the activity.
+//
+//					System.out.println(Constants.enterActivityId);
+//					int activityId = scanner.nextInt();
+//					System.out.println("Enter the Destination id.");
+//					int destinationId = scanner.nextInt();
+//					activityService.updateDestinationForActivity(activityId, destinationId);
+//
+//					break;
+//				}
+//
+//				case 15: {
+//					// update the cost for the actiSystem.out.println("Enter the Activity id ");
+//					System.out.println(Constants.enterActivityId);
+//					int activityId = scanner.nextInt();
+//					System.out.println("Enter the activity cost");
+//					double cost = scanner.nextDouble();
+//					activityService.updateCost(activityId, cost);
+//					break;
+//				}
+//
+//				case 16: {
+//					// update description for the activity.
+//					System.out.println(Constants.enterActivityId);
+//					int activityId = scanner.nextInt();
+//					System.out.println("Enter the activity description");
+//					String description = scanner.next();
+//					activityService.updateDescription(activityId, description);
+//					break;
+//				}
 
-				case 12: {
-					// update the maxSeats for activity.
-					System.out.println(Constants.enterActivityId);
-					int activityId = scanner.nextInt();
-					System.out.println("Enter the max seats for the activity.");
-					int maxseats = scanner.nextInt();
-					activityService.updateMaxSeatsAvailable(activityId, maxseats);
-					break;
-				}
-
-				case 13: {
-					// update maxSeats for travelPackage
-
-					System.out.println("Enter the TravelPackage id ");
-					int travelPackageId = scanner.nextInt();
-					System.out.println("Enter the max seats for the TravelPackage.");
-					int maxseats = scanner.nextInt();
-					activityService.updateMaxSeatsAvailable(travelPackageId, maxseats);
-					break;
-				}
-				case 14: {
-					// update destinationId for the activity.
-
-					System.out.println(Constants.enterActivityId);
-					int activityId = scanner.nextInt();
-					System.out.println("Enter the Destination id.");
-					int destinationId = scanner.nextInt();
-					activityService.updateDestinationForActivity(activityId, destinationId);
-
-					break;
-				}
-
-				case 15: {
-					// update the cost for the actiSystem.out.println("Enter the Activity id ");
-					System.out.println(Constants.enterActivityId);
-					int activityId = scanner.nextInt();
-					System.out.println("Enter the activity cost");
-					double cost = scanner.nextDouble();
-					activityService.updateCost(activityId, cost);
-					break;
-				}
-
-				case 16: {
-					// update description for the activity.
-					System.out.println(Constants.enterActivityId);
-					int activityId = scanner.nextInt();
-					System.out.println("Enter the activity description");
-					String description = scanner.nextLine();
-					activityService.updateDescription(activityId, description);
-					break;
-				}
-
-				case 17: {
+				case 11: {
 					// remove destination from itinerary.
 					System.out.println("Enter itinerary id : ");
 					int itineraryId = scanner.nextInt();
@@ -145,7 +160,7 @@ public class TravelAgencyMain {
 					break;
 				}
 
-				case 18: {
+				case 12: {
 					// add destination to itinerary.
 					System.out.println("Enter itinerary id : ");
 					int itineraryId = scanner.nextInt();
@@ -155,55 +170,56 @@ public class TravelAgencyMain {
 					break;
 				}
 
-				case 19: {
-					// update Passenger name
-					System.out.println("Enter passenger id : ");
-					int passengerId = scanner.nextInt();
-					System.out.println("Enter Passenger Name : ");
-					String name = scanner.nextLine();
-					passengerService.updateName(passengerId, name);
-					break;
-				}
-
-				case 20: {
-					// update passenger mobile number.
-					System.out.println("Enter passenger id : ");
-					int passengerId = scanner.nextInt();
-					System.out.println("Enter Mobile Number: ");
-					long mobileNo = scanner.nextLong();
-					passengerService.updateMobileNumber(passengerId, mobileNo);
-					break;
-				}
-
-				case 21: {
-					// update passenger's travel package id.
-					System.out.println("Enter passenger id : ");
-					int passengerId = scanner.nextInt();
-					System.out.println("Enter Travel Package Id ");
-					int travelPackageId = scanner.nextInt();
-					passengerService.updateTravelPacakgeId(passengerId, travelPackageId);
-					break;
-				}
-
-				case 22: {
-					// update travel package name.
-					System.out.println("Enter travel Pacakge Id:");
-					int travelPackageId = scanner.nextInt();
-					System.out.println("Enter package name :");
-					String name = scanner.nextLine();
-					travelPackageService.updateName(travelPackageId, name);
-					break;
-				}
-
-				case 23: {
-					// update travel package itinerary id.
-					System.out.println("Enter travel Pacakge Id:");
-					int travelPackageId = scanner.nextInt();
-					System.out.println("Enter Itinerary id :");
-					int itineraryId = scanner.nextInt();
-					travelPackageService.updateTravelPackageItinerary(travelPackageId, itineraryId);
-					break;
-				}
+//				case 19: {
+//					// update Passenger name
+//					System.out.println("Enter passenger id : ");
+//					int passengerId = scanner.nextInt();
+//					System.out.println("Enter Passenger Name : ");
+//					String name = scanner.next();
+//					passengerService.updateName(passengerId, name);
+//					break;
+//				}
+//
+//				case 20: {
+//					// update passenger mobile number.
+//					System.out.println("Enter passenger id : ");
+//					int passengerId = scanner.nextInt();
+//					System.out.println("Enter Mobile Number: ");
+//					long mobileNo = scanner.nextLong();
+//					passengerService.updateMobileNumber(passengerId, mobileNo);
+//					break;
+//				}
+//
+//				case 21: {
+//					// update passenger's travel package id.
+//					System.out.println("Enter passenger id : ");
+//					int passengerId = scanner.nextInt();
+//					System.out.println("Enter Travel Package Id ");
+//					int travelPackageId = scanner.nextInt();
+//					passengerService.updateTravelPacakgeId(passengerId, travelPackageId);
+//					break;
+//				}
+//
+//				case 22: {
+//					// update travel package name.
+//					System.out.println("Enter travel Pacakge Id:");
+//					int travelPackageId = scanner.nextInt();
+//					System.out.println("Enter package name :");
+//					String name = scanner.next();
+//					travelPackageService.updateName(travelPackageId, name);
+//					break;
+//				}
+//
+//				case 23: {
+//					// update travel package itinerary id.
+//					System.out.println("Enter travel Pacakge Id:");
+//					int travelPackageId = scanner.nextInt();
+//					System.out.println("Enter Itinerary id :");
+//					int itineraryId = scanner.nextInt();
+//					travelPackageService.updateTravelPackageItinerary(travelPackageId, itineraryId);
+//					break;
+//				}
+//				
 
 				default:
 					throw new IllegalArgumentException("Invalid input: " + inputNo);
@@ -216,13 +232,12 @@ public class TravelAgencyMain {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-
+			
 		}
 	}
 
-	private static void displayAllDetailsOfTravelPackage() throws Exception {
+	private static void printTravelPackageDetails() throws Exception {
 
-		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Enter travel Package id : ");
 		int travelPackageId = scanner.nextInt();
@@ -230,19 +245,15 @@ public class TravelAgencyMain {
 		TravelPackageService travelPackageService = TravelPackageService.getInstanceOf();
 		travelPackageService.displayIndividualTravelPacakge(travelPackageId);
 
-		scanner.close();
 	}
 
-	private static void displayIndividualPassengerDetails() {
-		Scanner scanner = new Scanner(System.in);
+	private static void printPassengerDetails() {
 		int passengerId = scanner.nextInt();
 		PassengerService passengerService = PassengerService.getInstanceOf();
 		passengerService.printPassengerInfo(passengerId);
-		scanner.close();
 	}
 
-	private static void displayItineraryOfTravelPackage() throws Exception {
-		Scanner scanner = new Scanner(System.in);
+	private static void printItinearyOfTravelPackage() throws Exception {
 
 		System.out.println("\n Enter travel package id:");
 		int travelPackageId = scanner.nextInt();
@@ -252,50 +263,41 @@ public class TravelAgencyMain {
 		int itineraryId = travelPackageService.getTravelPackageById(travelPackageId).getItineraryId();
 		itineraryService.displayItinerary(itineraryId);
 
-		scanner.close();
 
 	}
 
 	private static void removeActivityFromDestination() {
 		DestinationService destinationService = DestinationService.getInstanceOf();
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter ActivityId :");
 		int activityId = scanner.nextInt();
 		System.out.println("Enter Destination id  : ");
 		int destinationId = scanner.nextInt();
 		destinationService.removeActivityFromDestination(destinationId, activityId);
-		scanner.close();
 	}
 
 	private static void addActivityToDestination() {
 
 		DestinationService destinationService = DestinationService.getInstanceOf();
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter ActivityId :");
 		int activityId = scanner.nextInt();
 		System.out.println("Enter Destination id  : ");
 		int destinationId = scanner.nextInt();
 		destinationService.addActivityToDestination(destinationId, activityId);
-		scanner.close();
-
 	}
 
-	private static void passengerEnrollForActivity() {
-		Scanner scanner = new Scanner(System.in);
+	private static void registerPassengerForActivity() {
 		PassengerService passengerService = PassengerService.getInstanceOf();
 		System.out.println(Constants.enterPassengerId);
 		int passengerId = scanner.nextInt();
 		System.out.println(Constants.enterActivityId);
 		int activityId = scanner.nextInt();
 		passengerService.addActivityToPassenger(passengerId, activityId);
-		scanner.close();
 	}
 
-	private static void getNewTravelPackage() throws Exception {
-		Scanner scanner = new Scanner(System.in);
+	private static void createTravelPackage() throws Exception {
 
 		System.out.println("Enter the travel package name");
-		String name = scanner.nextLine();
+		String name = scanner.next();
 
 		System.out.println("Enter the max seats for this package");
 		int maxSeats = scanner.nextInt();
@@ -311,24 +313,21 @@ public class TravelAgencyMain {
 		TravelPackage travelPackage = new TravelPackage(id, name, maxSeats, itineraryId);
 		packageService.addTravelPackageToRepository(travelPackage);
 		System.out.println("Successfully added Travel Package with id  " + id + " to the repository.");
-		scanner.close();
 	}
 
-	private static void getInputForNewDestination() throws Exception {
+	private static void createDestination() throws Exception {
 
 		DestinationService destinationService = DestinationService.getInstanceOf();
-		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Enter Destination name : ");
-		String name = scanner.nextLine();
+		String name = scanner.next();
 		int id = destinationService.generateNewIdForDestination();
 		Destination destination = new Destination(name, id);
 		destinationService.addDestinationToRepository(destination);
 		System.out.println("Successfully added destination to repository.  Destination id generated is : " + id);
-		scanner.close();
 	}
 
-	private static Itinerary generateNewItinerary() throws Exception {
+	private static Itinerary createItineary() throws Exception {
 		ItineraryService itineraryService = ItineraryService.getInstanceOf();
 		int id = itineraryService.generateNewIdForItinerary();
 		Itinerary itinerary = new Itinerary(id);
@@ -338,14 +337,13 @@ public class TravelAgencyMain {
 		return itinerary;
 	}
 
-	private static void getInputForActivityEntry() throws Exception {
+	private static void registerActivity() throws Exception {
 
-		Scanner scanner = new Scanner(System.in);
 		ActivityService activityService = ActivityService.getInstanceOf();
-		System.out.println("Enter Activity Name : ");
-		String activityName = scanner.nextLine();
-		System.out.println("Enter some description about that :");
-		String description = scanner.nextLine();
+		System.out.println("Enter Activity Name : \n");
+		String activityName = scanner.next();
+		System.out.println("Enter some description about that :\n");
+		String description = scanner.next();
 		System.out.println("Enter Total number of seats available: ");
 		int seats = scanner.nextInt();
 		System.out.println("Enter the Activity cost : ");
@@ -354,35 +352,40 @@ public class TravelAgencyMain {
 				.println("Enter the destinationId for which this activity is part of: ( Or Enter -1 to update later.)");
 		int destinationId = scanner.nextInt();
 		int activityId = activityService.generateNewIdForActivity();
+		if(destinationId !=-1) {
+			destinationService.getDestinationById(destinationId);
+		}
 		Activity activity = new Activity(activityName, description, cost, seats, destinationId, activityId);
 		activityService.addActivityToRepository(activity);
-		scanner.close();
+		System.out.println("Successfully added Activity entry to repository. Use the activity id : " + activity.getActivityId()
+		+ " for your reference.");
 
 	}
 
-	private static void getInputForPassenger() throws Exception {
+	private static void registerPassenger() throws Exception {
 
 		PassengerService passengerService = PassengerService.getInstanceOf();
 
-		Scanner scanner = new Scanner(System.in);
 		System.out.println(Constants.enterYourName);
 		String name = scanner.next();
 		System.out.println(Constants.enterMobileNumber);
-		long mobileNo = scanner.nextLong();
+		long mobileNo = Long.parseLong(scanner.next());
 		System.out.println(Constants.enterBalance);
 		double balance = scanner.nextDouble();
 		System.out.println(Constants.enterPassengerType);
 		int membershipId = scanner.nextInt();
 		System.out.println("Enter the Travel package id (-1 if you want to update later.)");
 		int travelPacakgeId = scanner.nextInt();
+		if(travelPacakgeId != -1)
+			travelPackageService.getTravelPackageById(travelPacakgeId);
 		int passengerId = passengerService.generateNewIdForPassenger();
 		Passenger passenger = generatePassengerInstance(membershipId, name, mobileNo, balance, passengerId,
-				travelPacakgeId);
+				-1);
 		passengerService.addPassengerToRepository(passenger);
+		travelPackageService.addPassengerToTravelPackage(passengerId, travelPacakgeId);
 		System.out.println("Successfully added Passenger information. Use the passeenger id : " + passenger.getId()
 				+ " for your reference.");
 
-		scanner.close();
 	}
 
 	private static Passenger generatePassengerInstance(int membershipId, String name, long mobileNo, double balance,

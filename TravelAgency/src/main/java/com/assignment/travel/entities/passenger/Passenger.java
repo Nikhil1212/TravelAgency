@@ -1,4 +1,4 @@
-package entities;
+package com.assignment.travel.entities.passenger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,5 +67,9 @@ public abstract class Passenger {
 
 	public int getId() {
 		return this.passengerId;
+	}
+
+	public void setTravelPacakgeId(int travelPackageId) {
+		this.travelPacakgeId = travelPackageId;
 	}
 }

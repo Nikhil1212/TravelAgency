@@ -1,9 +1,9 @@
-package repository;
+package com.assignment.travel.repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import entities.TravelPackage;
+import com.assignment.travel.entities.TravelPackage;
 
 
 public class TravelPackageRepository {

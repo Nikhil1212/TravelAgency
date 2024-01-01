@@ -1,4 +1,4 @@
-package entities;
+package com.assignment.travel.entities;
 
 /**
  * Activity is unique w.r.t each destination. Like one activity cannot be present at more than one destination.

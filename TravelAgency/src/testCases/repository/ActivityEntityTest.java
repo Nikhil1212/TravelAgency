@@ -1,10 +1,10 @@
 package testCases.repository;
 
-import entities.Activity;
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.assignment.travel.entities.Activity;
 
 public class ActivityEntityTest {
 

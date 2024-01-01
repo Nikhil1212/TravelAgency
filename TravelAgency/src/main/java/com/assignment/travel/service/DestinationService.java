@@ -1,11 +1,11 @@
-package service;
+package com.assignment.travel.service;
 
 import java.util.List;
 import java.util.Map;
 
-import entities.Activity;
-import entities.Destination;
-import repository.DestinationRepository;
+import com.assignment.travel.entities.Activity;
+import com.assignment.travel.entities.Destination;
+import com.assignment.travel.repository.DestinationRepository;
 
 public class DestinationService {
 
@@ -57,7 +57,7 @@ public class DestinationService {
 	public Destination getDestinationById(int id) throws Exception {
 		
 		if(id < 0) {
-			throw new Exception ("Id cannot be negative.");
+			throw new Exception ("Destination Id cannot be negative.");
 		}
 		Map map = getDestinationMap();
 		
@@ -82,8 +82,11 @@ public class DestinationService {
 						throw new Exception ("Duplicate Activity. Activity Id already exists.");
 				}
 			}
+			ActivityService activityService = ActivityService.getInstanceOf();
+			Activity activity = activityService.getActivity(activityId);
 			
 			destination.addActivityById(activityId);
+			activity.setDestinationId(destinationId);
 		
 		}
 		catch (Exception e) {

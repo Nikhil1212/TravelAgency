@@ -1,16 +1,16 @@
-package service;
+package com.assignment.travel.service;
 
 import java.util.List;
 import java.util.Map;
 
-import entities.Activity;
-import entities.Destination;
-import entities.Itinerary;
-import entities.Passenger;
-import entities.TravelPackage;
-import repository.ItineraryRepository;
-import repository.PassengerRepository;
-import repository.TravelPackageRepository;
+import com.assignment.travel.entities.Activity;
+import com.assignment.travel.entities.Destination;
+import com.assignment.travel.entities.Itinerary;
+import com.assignment.travel.entities.TravelPackage;
+import com.assignment.travel.entities.passenger.Passenger;
+import com.assignment.travel.repository.ItineraryRepository;
+import com.assignment.travel.repository.PassengerRepository;
+import com.assignment.travel.repository.TravelPackageRepository;
 
 public class TravelPackageService {
 
@@ -32,7 +32,7 @@ public class TravelPackageService {
 			PassengerService passengerService = PassengerService.getInstanceOf();
 
 			Passenger passenger = passengerService.getPassengerById(passengerId);
-			
+
 			TravelPackageService travelPacakgeService = TravelPackageService.getInstanceOf();
 
 			TravelPackage travelPackage = travelPacakgeService.getTravelPackageById(travelPackageId);
@@ -41,12 +41,11 @@ public class TravelPackageService {
 				if (travelPackage.getMaxCapacity() > travelPackage.getListPassengers().size()) {
 					travelPackage.getListPassengers().add(passengerId);
 					int curSize = travelPackage.getSeatsAvailable();
-					travelPackage.setSeatsAvailable(curSize-1);
-				}
-				else
-					throw new Exception ("Seats are full.");
-			}
-			else {
+					travelPackage.setSeatsAvailable(curSize - 1);
+					passenger.setTravelPacakgeId(travelPackageId);
+				} else
+					throw new Exception("Seats are full.");
+			} else {
 				throw new Exception("ListPassengers attribute of TravelPackage is null");
 			}
 		} catch (Exception exception) {
@@ -103,7 +102,7 @@ public class TravelPackageService {
 		TravelPackage travelPackage = (TravelPackage) map.get(id);
 
 		if (travelPackage == null)
-			throw new Exception("Travel Package does not exist for the given id : "+id);
+			throw new Exception("Travel Package does not exist for the given id : " + id);
 
 		return travelPackage;
 
@@ -131,7 +130,7 @@ public class TravelPackageService {
 			Object[] travelPackageIds = map.entrySet().toArray();
 			for (int i = 0; i < travelPackageIds.length; i++) {
 				try {
-					displayIndividualTravelPacakge((int)travelPackageIds[i]);
+					displayIndividualTravelPacakge((int) travelPackageIds[i]);
 				} catch (Exception exception) {
 					System.out.println(exception.getMessage());
 				}
@@ -145,9 +144,9 @@ public class TravelPackageService {
 	public void displayIndividualTravelPacakge(int id) throws Exception {
 		TravelPackage travelPackage = getTravelPackageById((int) id);
 		System.out.println(travelPackage.getName() + " : " + travelPackage.getPackageId()
-				+ ", Passenger Maximum capacity : " + travelPackage.getMaxCapacity()
-				+ " current seats available : " + travelPackage.getSeatsAvailable()
-				+ ", total seats booked is : " + getTotalSeatsBooked(travelPackage));
+				+ ", Passenger Maximum capacity : " + travelPackage.getMaxCapacity() + " current seats available : "
+				+ travelPackage.getSeatsAvailable() + ", total seats booked is : "
+				+ getTotalSeatsBooked(travelPackage));
 		List<Integer> passengerList = travelPackage.getListPassengers();
 		if (passengerList != null) {
 			PassengerService passengerService = PassengerService.getInstanceOf();
@@ -177,21 +176,21 @@ public class TravelPackageService {
 		} else {
 			throw new Exception("Itineary id cannot be negative.");
 		}
-		
+
 	}
-	
+
 	public void updateName(int travelPackageId, String name) throws Exception {
-		if(name.isEmpty())
-			throw new Exception ("Name cannot be empty.");
+		if (name.isEmpty())
+			throw new Exception("Name cannot be empty.");
 		TravelPackage travelPackage = getTravelPackageById(travelPackageId);
 		travelPackage.setName(name);
 	}
 
 	public void updateTravelPackageItinerary(int travelPackageId, int itineraryId) throws Exception {
-		
+
 		TravelPackage travelPackage = getTravelPackageById(travelPackageId);
-		if(travelPackage.getItineraryId()!=-1) {
-			throw new Exception ("Already travel package has some itinerary.");
+		if (travelPackage.getItineraryId() != -1) {
+			throw new Exception("Already travel package has some itinerary.");
 		}
 		ItineraryService itineraryService = ItineraryService.getInstanceOf();
 		Itinerary itinerary = itineraryService.getItineraryById(itineraryId);

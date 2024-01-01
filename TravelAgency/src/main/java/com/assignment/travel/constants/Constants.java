@@ -1,3 +1,4 @@
+package com.assignment.travel.constants;
 
 public class Constants {
 	

@@ -1,16 +1,16 @@
-package service;
+package com.assignment.travel.service;
 
 import java.util.List;
 import java.util.Map;
 
-import entities.Activity;
-import entities.Destination;
-import entities.Itinerary;
-import entities.Passenger;
-import entities.TravelPackage;
-import repository.ActivityRepository;
-import repository.DestinationRepository;
-import repository.PassengerRepository;
+import com.assignment.travel.entities.Activity;
+import com.assignment.travel.entities.Destination;
+import com.assignment.travel.entities.Itinerary;
+import com.assignment.travel.entities.TravelPackage;
+import com.assignment.travel.entities.passenger.Passenger;
+import com.assignment.travel.repository.ActivityRepository;
+import com.assignment.travel.repository.DestinationRepository;
+import com.assignment.travel.repository.PassengerRepository;
 
 public class PassengerService {
 
@@ -190,8 +190,8 @@ public class PassengerService {
 		passenger.setName(name);
 	}
 
-	public void updateMobileNumber(int passengerId, long mobileNo) throws Exception {
-
+	public void updateMobileNumber(int passengerId, long mobileNo) throws Exception
+	{
 		if(mobileNo < 0)
 			throw new Exception("Invalid mobile number");
 		PassengerService passengerService = PassengerService.getInstanceOf();

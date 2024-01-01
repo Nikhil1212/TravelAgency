@@ -1,9 +1,9 @@
-package repository;
+package com.assignment.travel.repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import entities.Passenger;
+import com.assignment.travel.entities.passenger.Passenger;
 
 /**
  *  1. Balance update (decrement)

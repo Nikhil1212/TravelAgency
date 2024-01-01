@@ -1,4 +1,4 @@
-package entities;
+package com.assignment.travel.entities;
 
 import java.util.ArrayList;
 import java.util.Date;

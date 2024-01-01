@@ -1,10 +1,8 @@
-package passengerType;
-
-import entities.Passenger;
+package com.assignment.travel.entities.passenger;
 
 public class GoldPassenger extends Passenger {
 	
-	public static double discountPercentage = 10;
+	private static double discountPercentage = 10;
 
 	public GoldPassenger(int id, String name, double balance,  long mobileNumber, int travelPackageId) {
 		super(id, name, balance, mobileNumber, travelPackageId);

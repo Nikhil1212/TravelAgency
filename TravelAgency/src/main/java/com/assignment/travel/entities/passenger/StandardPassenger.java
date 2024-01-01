@@ -1,6 +1,4 @@
-package passengerType;
-
-import entities.Passenger;
+package com.assignment.travel.entities.passenger;
 
 public class StandardPassenger extends Passenger {
 

@@ -1,10 +1,11 @@
 package testCases.repository;
 
 
-import entities.Passenger;
-import passengerType.StandardPassenger;
-
 import org.junit.Test;
+
+import com.assignment.travel.entities.passenger.Passenger;
+import com.assignment.travel.entities.passenger.StandardPassenger;
+
 import static org.junit.Assert.*;
 
 public class PassengerEntityTest {

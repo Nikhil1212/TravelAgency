@@ -1,15 +1,15 @@
-package service;
+package com.assignment.travel.service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import entities.Activity;
-import entities.Destination;
-import entities.Passenger;
-import repository.ActivityRepository;
-import repository.DestinationRepository;
-import repository.PassengerRepository;
+import com.assignment.travel.entities.Activity;
+import com.assignment.travel.entities.Destination;
+import com.assignment.travel.entities.passenger.Passenger;
+import com.assignment.travel.repository.ActivityRepository;
+import com.assignment.travel.repository.DestinationRepository;
+import com.assignment.travel.repository.PassengerRepository;
 
 public class ActivityService {
 	
@@ -187,6 +187,8 @@ public class ActivityService {
 			throw new Exception ("Error. Unable to remove the activity id from the old destination.");
 		destination.removeActivity(index);
 		activity.setDestinationId(destinationId);
+		destination = destinationService.getDestinationById(destinationId);
+		destination.getListActivity().add(activityId);
 	}
 
 	public void updateCost(int activityId, double cost) throws Exception {

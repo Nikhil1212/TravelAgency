@@ -1,14 +1,14 @@
-package service;
+package com.assignment.travel.service;
 
 import java.util.List;
 import java.util.Map;
 
-import entities.Destination;
-import entities.Itinerary;
-import entities.Passenger;
-import repository.ActivityRepository;
-import repository.DestinationRepository;
-import repository.ItineraryRepository;
+import com.assignment.travel.entities.Destination;
+import com.assignment.travel.entities.Itinerary;
+import com.assignment.travel.entities.passenger.Passenger;
+import com.assignment.travel.repository.ActivityRepository;
+import com.assignment.travel.repository.DestinationRepository;
+import com.assignment.travel.repository.ItineraryRepository;
 
 public class ItineraryService {
 	/**
